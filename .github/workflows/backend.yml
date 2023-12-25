@@ -2,7 +2,7 @@ on:
   push:
     branches: ["main"]
     paths: ["backend/**"]
-name: 🚀 Deploy website on push
+name: 🚀 Deploy backend on push
 jobs:
   backend-deploy:
     name: 🎉 Deploy
