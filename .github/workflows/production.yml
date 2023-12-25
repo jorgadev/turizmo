@@ -1,7 +1,10 @@
-on: push
+on:
+  push:
+    branches: ["main"]
+    paths: ["frontend/**"]
 name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
+  frontend-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
