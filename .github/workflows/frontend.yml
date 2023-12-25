@@ -2,7 +2,7 @@ on:
   push:
     branches: ["main"]
     paths: ["frontend/**"]
-name: 🚀 Deploy frontend on push
+name: 🚀 Frontend deploy
 jobs:
   frontend-deploy:
     name: 🎉 Deploy
