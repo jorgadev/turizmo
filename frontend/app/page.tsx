@@ -1,5 +1,15 @@
+import Link from "next/link";
 import React from "react";
 
-export default function page() {
-  return <div>page!</div>;
+export default function Page() {
+  return (
+    <div>
+      <Link href="/auth">
+        <div>Prijava za delavce</div>
+      </Link>
+      <Link href="/auth">
+        <div>Prijava za podjetja</div>
+      </Link>
+    </div>
+  );
 }
