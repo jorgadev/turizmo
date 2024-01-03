@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: ["develop"]
+    paths: ["frontend/**"]
+name: 🚀 Frontend DEV deploy
+jobs:
+  frontend-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.ftp_server }}
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./frontend/
+          server-dir: /dev.turizmo.pro/
