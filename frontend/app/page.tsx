@@ -8,7 +8,7 @@ export default function Page() {
         <div>Prijava za delavce test</div>
       </Link>
       <Link href="/auth">
-        <div>Prijava za podjetja</div>
+        <div>Prijava za podjetja develop branch</div>
       </Link>
     </div>
   );
