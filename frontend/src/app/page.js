@@ -1,24 +1,31 @@
-import LoginLinks from '@/app/LoginLinks'
 import Link from 'next/link'
 
 export const metadata = {
     title: 'Laravel',
 }
 
-const Home = () => {
+export default function Home() {
     return (
-        <>
-            <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-                <LoginLinks />
+        <div className="relative flex justify-center min-h-screen bg-gray-900 items-center sm:pt-0">
+            <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div className="text-center">
+                    <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">
+                        Turizmo - elevate{' '}
+                        <mark className="px-2 text-white bg-indigo-400 rounded-lg">
+                            your
+                        </mark>{' '}
+                        career
+                    </h1>
+                    <p className="hidden sm:inline-block text-sm md:text-base font-normal lg:text-xl text-gray-400">
+                        Unlock Your Potential, Explore New Heights in Your
+                        Professional Journey.
+                    </p>
+                </div>
 
-                <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                        <h1 className="text-white">Turizmo</h1>
-                    </div>
-
-                    <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                        <div className="grid grid-cols-1 md:grid-cols-2">
-                            <div className="p-6">
+                <div className="mt-8 overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                        <Link href="/register">
+                            <div className="p-6 bg-gray-800 sm:rounded-lg hover:bg-gray-700">
                                 <div className="flex items-center">
                                     <svg
                                         fill="none"
@@ -32,28 +39,25 @@ const Home = () => {
                                     </svg>
 
                                     <div className="ml-4 text-lg leading-7 font-semibold">
-                                        <Link
-                                            href="/register"
-                                            className="underline text-gray-900 dark:text-white">
-                                            Register as Worker
-                                        </Link>
+                                        <h3 className="text-white">
+                                            Continue as Worker
+                                        </h3>
                                     </div>
                                 </div>
 
                                 <div className="ml-12">
-                                    <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        Laravel has wonderful, thorough
-                                        documentation covering every aspect of
-                                        the framework. Whether you are new to
-                                        the framework or have previous
-                                        experience with Laravel, we recommend
-                                        reading all of the documentation from
-                                        beginning to end.
+                                    <div className="mt-2 text-gray-400 text-sm">
+                                        Discover flexible job opportunities. Set
+                                        up your profile, input availability, and
+                                        choose wages. Find jobs that match your
+                                        schedule.
                                     </div>
                                 </div>
                             </div>
+                        </Link>
 
-                            <div className="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                        <Link href="/register-company">
+                            <div className="p-6 bg-gray-800 sm:rounded-lg hover:bg-gray-700">
                                 <div className="flex items-center">
                                     <svg
                                         fill="none"
@@ -67,30 +71,25 @@ const Home = () => {
                                     </svg>
 
                                     <div className="ml-4 text-lg leading-7 font-semibold">
-                                        <Link
-                                            href="/register-company"
-                                            className="underline text-gray-900 dark:text-white">
-                                            Register as Company
-                                        </Link>
+                                        <h3 className="text-white">
+                                            Continue as Company
+                                        </h3>
                                     </div>
                                 </div>
 
                                 <div className="ml-12">
-                                    <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        Laracasts offers thousands of video
-                                        tutorials on Laravel, PHP, and
-                                        JavaScript development. Check them out,
-                                        see for yourself, and massively level up
-                                        your development skills in the process.
+                                    <div className="mt-2 text-gray-400 text-sm">
+                                        Streamline staffing needs. Post
+                                        temporary jobs with details. Connect
+                                        efficiently with skilled workers for a
+                                        modern hiring approach.
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
-
-export default Home
