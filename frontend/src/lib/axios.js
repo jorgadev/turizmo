@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 const axios = Axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseURL: 'https://api-dev.turizmo.pro/',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
     },
