@@ -3,9 +3,9 @@
   "/page": "app/page.js",
   "/(app)/@header/dashboard/page": "app/(app)/@header/dashboard/page.js",
   "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
-  "/(auth)/password-reset/[token]/page": "app/(auth)/password-reset/[token]/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
   "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js",
-  "/(auth)/register/page": "app/(auth)/register/page.js"
+  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/password-reset/[token]/page": "app/(auth)/password-reset/[token]/page.js"
 }
