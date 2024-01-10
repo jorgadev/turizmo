@@ -39,21 +39,6 @@
       "static/chunks/main-app-e73626b7d61b8608.js",
       "static/chunks/app/(app)/dashboard/page-c9d94a288e398d4a.js"
     ],
-    "/(auth)/forgot-password/page": [
-      "static/chunks/webpack-214b2db656b88b4c.js",
-      "static/chunks/fd9d1056-8a1173233da862d9.js",
-      "static/chunks/472-663470423f979c57.js",
-      "static/chunks/main-app-e73626b7d61b8608.js",
-      "static/chunks/530-0d6e6bd0daef6c58.js",
-      "static/chunks/app/(auth)/forgot-password/page-0cb35fe63548b725.js"
-    ],
-    "/(auth)/layout": [
-      "static/chunks/webpack-214b2db656b88b4c.js",
-      "static/chunks/fd9d1056-8a1173233da862d9.js",
-      "static/chunks/472-663470423f979c57.js",
-      "static/chunks/main-app-e73626b7d61b8608.js",
-      "static/chunks/app/(auth)/layout-804f4509e8aa657b.js"
-    ],
     "/(auth)/login/page": [
       "static/chunks/webpack-214b2db656b88b4c.js",
       "static/chunks/fd9d1056-8a1173233da862d9.js",
@@ -62,6 +47,13 @@
       "static/chunks/530-0d6e6bd0daef6c58.js",
       "static/chunks/326-b288dba824cccbca.js",
       "static/chunks/app/(auth)/login/page-35213b13a133432b.js"
+    ],
+    "/(auth)/layout": [
+      "static/chunks/webpack-214b2db656b88b4c.js",
+      "static/chunks/fd9d1056-8a1173233da862d9.js",
+      "static/chunks/472-663470423f979c57.js",
+      "static/chunks/main-app-e73626b7d61b8608.js",
+      "static/chunks/app/(auth)/layout-804f4509e8aa657b.js"
     ],
     "/(auth)/password-reset/[token]/page": [
       "static/chunks/webpack-214b2db656b88b4c.js",
@@ -78,7 +70,7 @@
       "static/chunks/main-app-e73626b7d61b8608.js",
       "static/chunks/530-0d6e6bd0daef6c58.js",
       "static/chunks/326-b288dba824cccbca.js",
-      "static/chunks/app/(auth)/register-company/page-356aeafcf5d7a62c.js"
+      "static/chunks/app/(auth)/register-company/page-86b5653021e7b97b.js"
     ],
     "/(auth)/register/page": [
       "static/chunks/webpack-214b2db656b88b4c.js",
@@ -96,6 +88,14 @@
       "static/chunks/main-app-e73626b7d61b8608.js",
       "static/chunks/530-0d6e6bd0daef6c58.js",
       "static/chunks/app/(auth)/verify-email/page-f1d766f39f9660da.js"
+    ],
+    "/(auth)/forgot-password/page": [
+      "static/chunks/webpack-214b2db656b88b4c.js",
+      "static/chunks/fd9d1056-8a1173233da862d9.js",
+      "static/chunks/472-663470423f979c57.js",
+      "static/chunks/main-app-e73626b7d61b8608.js",
+      "static/chunks/530-0d6e6bd0daef6c58.js",
+      "static/chunks/app/(auth)/forgot-password/page-0cb35fe63548b725.js"
     ]
   }
 }

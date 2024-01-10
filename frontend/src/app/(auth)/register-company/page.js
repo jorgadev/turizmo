@@ -23,6 +23,7 @@ const Page = () => {
     const submitForm = event => {
         event.preventDefault()
 
+        //
         register({
             name,
             email,
