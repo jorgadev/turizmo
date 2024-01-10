@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobApplications extends Model
+class WorkerProfile extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id', 'full_name', 'contact_number', 'availability', 'hourly_wage',
+    ];
 }

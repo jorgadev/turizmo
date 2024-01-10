@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JobListings;
-use App\Models\JobApplications;
+use App\Models\JobListing;
+use App\Models\JobApplication;
 
 class WorkerController extends Controller
 {
@@ -16,14 +16,14 @@ class WorkerController extends Controller
 
     public function getJobs()
     {
-        $jobs = JobListings::all()->toArray();
+        $jobs = JobListing::all()->toArray();
 
          return response()->json(['message' => 'This is a test route']);
     }
 
     public function getJob($id)
     {
-        $job = JobListings::find($id)->toArray();
+        $job = JobListing::find($id)->toArray();
 
         return response()->json([
             'job' => $job,
@@ -35,7 +35,7 @@ class WorkerController extends Controller
         
         //insert into job_applications table
 
-        $jobApplication = new JobApplications([
+        $jobApplication = new JobApplication([
             'job_id' => $request->job_id,
             'worker_id' => $request->worker_id,
             'status' => 'pending',
@@ -48,7 +48,7 @@ class WorkerController extends Controller
 
     public function deleteJobApplication($id)
     {
-        $jobApplication = JobApplications::find($id);
+        $jobApplication = JobApplication::find($id);
         $jobApplication->delete();
 
         return response()->json([

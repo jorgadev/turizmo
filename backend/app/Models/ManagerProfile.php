@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobListings extends Model
+class ManagerProfile extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id', 'company_name', 'contact_number',
+    ];
 }
