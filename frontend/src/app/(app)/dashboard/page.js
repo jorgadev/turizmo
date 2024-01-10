@@ -1,8 +1,6 @@
-export const metadata = {
-    title: 'Laravel - Dashboard',
-}
+import React from 'react'
 
-const Dashboard = () => {
+export default function Dashboard() {
     return (
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -15,5 +13,3 @@ const Dashboard = () => {
         </div>
     )
 }
-
-export default Dashboard
