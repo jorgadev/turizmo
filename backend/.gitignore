@@ -6,6 +6,8 @@
 /storage/*.key
 .env
 .env.backup
+.env.local
+.env.staging
 .env.production
 .phpunit.result.cache
 Homestead.json
@@ -16,3 +18,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/vendor
