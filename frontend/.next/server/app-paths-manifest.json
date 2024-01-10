@@ -4,8 +4,8 @@
   "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
   "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
   "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/register-company/page": "app/(auth)/register-company/page.js",
   "/(auth)/password-reset/[token]/page": "app/(auth)/password-reset/[token]/page.js",
+  "/(auth)/register-company/page": "app/(auth)/register-company/page.js",
   "/(auth)/register/page": "app/(auth)/register/page.js",
   "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js"
 }
