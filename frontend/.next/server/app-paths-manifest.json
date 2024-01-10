@@ -1,11 +1,13 @@
 {
   "/_not-found": "app/_not-found.js",
   "/page": "app/page.js",
-  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
+  "/(app)/applications/page": "app/(app)/applications/page.js",
+  "/(app)/profile/page": "app/(app)/profile/page.js",
+  "/(app)/jobs/page": "app/(app)/jobs/page.js",
   "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/password-reset/[token]/page": "app/(auth)/password-reset/[token]/page.js",
+  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
   "/(auth)/register-company/page": "app/(auth)/register-company/page.js",
+  "/(auth)/password-reset/[token]/page": "app/(auth)/password-reset/[token]/page.js",
   "/(auth)/register/page": "app/(auth)/register/page.js",
-  "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js",
-  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js"
+  "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js"
 }

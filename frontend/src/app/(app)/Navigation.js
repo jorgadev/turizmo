@@ -1,11 +1,9 @@
 import ApplicationLogo from '@/components/ApplicationLogo'
-import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
 import NavLink from '@/components/NavLink'
 import ResponsiveNavLink, {
     ResponsiveNavButton,
 } from '@/components/ResponsiveNavLink'
-import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -26,49 +24,35 @@ const Navigation = ({ user }) => {
                     <div className="flex">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
-                            <Link href="/dashboard">
+                            <Link href="/jobs">
                                 <ApplicationLogo className="block h-10 w-auto fill-current text-gray-600" />
                             </Link>
                         </div>
 
                         {/* Navigation Links */}
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <NavLink href="/jobs" active={pathname === '/jobs'}>
+                                Jobs
+                            </NavLink>
                             <NavLink
-                                href="/dashboard"
-                                active={pathname === '/dashboard'}>
-                                Dashboard
+                                href="/applications"
+                                active={pathname === '/applications'}>
+                                Applications
                             </NavLink>
                         </div>
                     </div>
 
-                    {/* Settings Dropdown */}
-                    <div className="hidden sm:flex sm:items-center sm:ml-6">
-                        <Dropdown
-                            align="right"
-                            width="48"
-                            trigger={
-                                <button className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
-                                    <div>{user?.name}</div>
-
-                                    <div className="ml-1">
-                                        <svg
-                                            className="fill-current h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clipRule="evenodd"
-                                            />
-                                        </svg>
-                                    </div>
-                                </button>
-                            }>
-                            {/* Authentication */}
-                            <DropdownButton onClick={logout}>
-                                Logout
-                            </DropdownButton>
-                        </Dropdown>
+                    <div className="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
+                        <NavLink
+                            href="/profile"
+                            active={pathname === '/profile'}>
+                            Profile
+                        </NavLink>
+                        <div
+                            onClick={logout}
+                            className={`inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out text-gray-500 hover:text-gray-700 hover:cursor-pointer`}>
+                            Logout
+                        </div>
                     </div>
 
                     {/* Hamburger */}
@@ -107,17 +91,8 @@ const Navigation = ({ user }) => {
             {/* Responsive Navigation Menu */}
             {open && (
                 <div className="block sm:hidden">
-                    <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink
-                            href="/dashboard"
-                            active={router.pathname === '/dashboard'}>
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    {/* Responsive Settings Options */}
-                    <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="flex items-center px-4">
+                    <Link href="/profile">
+                        <div className="flex items-center p-4 border border-gray-200 hover:bg-gray-100">
                             <div className="flex-shrink-0">
                                 <svg
                                     className="h-10 w-10 fill-current text-gray-400"
@@ -143,13 +118,22 @@ const Navigation = ({ user }) => {
                                 </div>
                             </div>
                         </div>
+                    </Link>
 
-                        <div className="mt-3 space-y-1">
-                            {/* Authentication */}
-                            <ResponsiveNavButton onClick={logout}>
-                                Logout
-                            </ResponsiveNavButton>
-                        </div>
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink
+                            href="/jobs"
+                            active={router.pathname === '/jobs'}>
+                            Jobs
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/applications"
+                            active={router.pathname === '/applications'}>
+                            Applications
+                        </ResponsiveNavLink>
+                        <ResponsiveNavButton onClick={logout}>
+                            Logout
+                        </ResponsiveNavButton>
                     </div>
                 </div>
             )}
