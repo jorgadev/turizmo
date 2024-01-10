@@ -1,4 +1,4 @@
-// File: /home/rado/personal/turizmo/frontend/src/app/(app)/layout.js
+// File: C:\xampp\htdocs\turizmo\frontend\src\app\(app)\layout.js
 import * as entry from '../../../../src/app/(app)/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
