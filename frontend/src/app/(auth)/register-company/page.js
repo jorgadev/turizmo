@@ -28,6 +28,7 @@ const Page = () => {
             email,
             password,
             password_confirmation: passwordConfirmation,
+            is_company: true,
             setErrors,
         })
     }
