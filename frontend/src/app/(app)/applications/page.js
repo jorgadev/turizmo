@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function Applications() {
-    return <div>Applications</div>
+    return <div>Applications</div>;
 }

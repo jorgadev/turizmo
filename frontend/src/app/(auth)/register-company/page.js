@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import Button from '@/components/Button'
-import Input from '@/components/Input'
-import InputError from '@/components/InputError'
-import Label from '@/components/Label'
-import Link from 'next/link'
-import { useAuth } from '@/hooks/auth'
-import { useState } from 'react'
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+import InputError from '@/components/InputError';
+import Label from '@/components/Label';
+import Link from 'next/link';
+import { useAuth } from '@/hooks/auth';
+import { useState } from 'react';
 
 const Page = () => {
     const { register } = useAuth({
         middleware: 'guest',
         redirectIfAuthenticated: '/jobs',
-    })
+    });
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const submitForm = event => {
-        event.preventDefault()
+        event.preventDefault();
 
         //
         register({
@@ -31,8 +31,8 @@ const Page = () => {
             password_confirmation: passwordConfirmation,
             is_company: true,
             setErrors,
-        })
-    }
+        });
+    };
 
     return (
         <form onSubmit={submitForm}>
@@ -117,7 +117,7 @@ const Page = () => {
                 <Button className="ml-4">Register</Button>
             </div>
         </form>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;

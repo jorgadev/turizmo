@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Jobs() {
     return (
@@ -11,5 +11,5 @@ export default function Jobs() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

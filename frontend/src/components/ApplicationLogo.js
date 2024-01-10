@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function ApplicationLogo() {
-    return <h1>Turizmo</h1>
+    return <h1>Turizmo</h1>;
 }

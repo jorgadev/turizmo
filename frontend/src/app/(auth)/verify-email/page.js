@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import Button from '@/components/Button'
-import { useAuth } from '@/hooks/auth'
-import { useState } from 'react'
+import Button from '@/components/Button';
+import { useAuth } from '@/hooks/auth';
+import { useState } from 'react';
 
 const Page = () => {
     const { logout, resendEmailVerification } = useAuth({
         middleware: 'auth',
         redirectIfAuthenticated: '/jobs',
-    })
+    });
 
-    const [status, setStatus] = useState(null)
+    const [status, setStatus] = useState(null);
 
     return (
         <>
@@ -41,7 +41,7 @@ const Page = () => {
                 </button>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;
