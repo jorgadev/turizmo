@@ -59,3 +59,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/job-applications', [CompanyController::class, 'updateJobApplication']);
 
 });
+
+

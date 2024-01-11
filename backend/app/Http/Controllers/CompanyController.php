@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\JobListing;
+use App\Models\JobApplication;
 
 class CompanyController extends Controller
 {
@@ -12,9 +14,9 @@ class CompanyController extends Controller
         $user = auth()->user();
         return response()->json(['user' => $user]);
     }
-
+    
     public function createJob(Request $request){
-        $job = new JobListings([
+        $job = new JobListing([
             'manager_id' => $request->manager_id,
             'title' => $request->title,
             'description' => $request->description,
@@ -31,7 +33,7 @@ class CompanyController extends Controller
     }
 
     public function deleteJob($id){
-        $job = JobListings::find($id);
+        $job = JobListing::find($id);
         $job->delete();
 
         return response()->json([
@@ -41,7 +43,7 @@ class CompanyController extends Controller
     //update job listing
     public function updateJob(Request $request){
 
-        $job = JobListings::find($request->id);
+        $job = JobListing::find($request->id);
         $job->title = $request->title;
         $job->description = $request->description;
         $job->location = $request->location;
@@ -56,7 +58,7 @@ class CompanyController extends Controller
     }
 
     public function getJobApplications($id){
-        $jobApplications = JobApplications::where('job_id', $id)->get()->toArray();
+        $jobApplications = JobApplication::where('job_id', $id)->get()->toArray();
 
         return response()->json([
             'jobApplications' => $jobApplications,
@@ -64,7 +66,7 @@ class CompanyController extends Controller
     }
 
     public function getJobApplication($id){
-        $jobApplication = JobApplications::find($id)->toArray();
+        $jobApplication = JobApplication::find($id)->toArray();
 
         return response()->json([
             'jobApplication' => $jobApplication,
@@ -74,7 +76,7 @@ class CompanyController extends Controller
     //update job application
     public function updateJobApplication(Request $request){
 
-        $jobApplication = JobApplications::find($request->id);
+        $jobApplication = JobApplication::find($request->id);
         $jobApplication->status = $request->status;
         $jobApplication->save();
 
