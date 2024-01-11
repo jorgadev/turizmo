@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manager_profiles', function (Blueprint $table) {
+        Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('company_name');
-            $table->string('contact_number');
+            $table->string('full_name');
+            $table->string('contact_number')->nullable();
+            $table->json('availability')->default(json_encode([true, true, true, true, true, true, true])); 
+            $table->decimal('hourly_wage', 8, 2)->default(5);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manager_profiles');
+        Schema::dropIfExists('workers');
     }
 };

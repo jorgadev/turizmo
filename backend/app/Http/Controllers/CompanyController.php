@@ -17,7 +17,7 @@ class CompanyController extends Controller
     
     public function createJob(Request $request){
         $job = new JobListing([
-            'manager_id' => $request->manager_id,
+            'company_id' => $request->company_id,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,

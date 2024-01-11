@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reviewer_id')->constrained('users');
-            $table->foreignId('reviewee_id')->constrained('users');
-            $table->foreignId('job_id')->constrained('job_listings');
-            $table->integer('rating');
-            $table->text('comment')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->string('company_name');
+            $table->string('contact_number')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('companies');
     }
 };

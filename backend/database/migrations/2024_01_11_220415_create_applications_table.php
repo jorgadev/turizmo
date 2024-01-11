@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_applications', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained('job_listings');
-            $table->foreignId('worker_id')->constrained('worker_profiles');
-            $table->enum('status', ['Pending', 'Accepted', 'Rejected']);
+            $table->foreignId('job_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->enum('status', ['pending', 'accepted', 'rejected']);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_applications');
+        Schema::dropIfExists('applications');
     }
 };
