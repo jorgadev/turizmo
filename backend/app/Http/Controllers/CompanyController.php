@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JobListing;
 use App\Models\JobApplication;
+use App\Models\Company;
+
 
 class CompanyController extends Controller
 {
@@ -12,7 +14,15 @@ class CompanyController extends Controller
     public function show(Request $request)
     {
         $user = auth()->user();
-        return response()->json(['user' => $user]);
+
+        // Retrieve company details for the authenticated user
+        $company = Company::where('user_id', $user->id)->first();
+
+        if (!$company) {
+            return response()->json(['error' => 'Company profile not found.'], 404);
+        }
+
+        return response()->json(['company' => $company]);
     }
     
     public function createJob(Request $request){

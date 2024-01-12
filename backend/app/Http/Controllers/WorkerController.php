@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JobListings;
 use App\Models\JobApplications;
+use App\Models\Worker;
 
 class WorkerController extends Controller
 {
     public function show(Request $request)
     {
         $user = auth()->user();
-        return response()->json(['user' => $user]);
+
+        // Retrieve worker details for the authenticated user
+        $worker = Worker::where('user_id', $user->id)->first();
+
+        if (!$worker) {
+            return response()->json(['error' => 'Worker profile not found.'], 404);
+        }
+
+        return response()->json(['worker' => $worker]);
     }
 
     public function getJobs()

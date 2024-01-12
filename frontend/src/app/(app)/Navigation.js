@@ -32,12 +32,14 @@ const Navigation = ({ user }) => {
                         {/* Navigation Links */}
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink href="/jobs" active={pathname === '/jobs'}>
-                                Jobs
+                                {user.is_company ? 'My Jobs' : 'Jobs'}
                             </NavLink>
                             <NavLink
                                 href="/applications"
                                 active={pathname === '/applications'}>
-                                Applications
+                                {user.is_company
+                                    ? 'Applications'
+                                    : 'My Applications'}
                             </NavLink>
                         </div>
                     </div>
