@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JobListings;
-use App\Models\JobApplications;
+use App\Models\Jobs;
+use App\Models\Applications;
 use App\Models\Worker;
 
 class WorkerController extends Controller
@@ -25,43 +25,50 @@ class WorkerController extends Controller
 
     public function getJobs()
     {
-        $jobs = JobListings::all()->toArray();
+        // Retrieve all jobs
+        $jobs = Jobs::all();
 
-         return response()->json(['message' => 'This is a test route']);
+        // Check if there are jobs
+        if ($jobs->isEmpty()) {
+            return response()->json(['message' => 'No jobs found.']);
+        }
+
+        // Return the list of jobs as JSON response
+        return response()->json(['jobs' => $jobs]);
     }
 
     public function getJob($id)
     {
-        $job = JobListings::find($id)->toArray();
+        $job = Jobs::find($id)->toArray();
 
         return response()->json([
             'job' => $job,
         ]);
     }
 
-    public function jobApplication(Request $request)
+    public function application(Request $request)
     {
 
-        //insert into job_applications table
+        //insert into applications table
 
-        $jobApplication = new JobApplications([
+        $application = new Applications([
             'job_id' => $request->job_id,
             'worker_id' => $request->worker_id,
             'status' => 'pending',
         ]);
 
         return response()->json([
-            'message' => 'Job application successful!',
+            'message' => 'Application successful!',
         ]);
     }
 
-    public function deleteJobApplication($id)
+    public function deleteApplication($id)
     {
-        $jobApplication = JobApplications::find($id);
-        $jobApplication->delete();
+        $application = applications::find($id);
+        $application->delete();
 
         return response()->json([
-            'message' => 'Job application deleted!',
+            'message' => 'Application deleted!',
         ]);
     }
 

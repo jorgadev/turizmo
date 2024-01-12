@@ -1,6 +1,13 @@
+'use client';
+
+import { useFetch } from '@/hooks/fetch';
 import React from 'react';
 
 export default function Jobs() {
+    const { data, error, mutate, isLoading } = useFetch('/api/jobs');
+
+    console.log(data);
+
     return (
         <div className="py-8">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

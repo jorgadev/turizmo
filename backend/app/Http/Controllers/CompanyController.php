@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JobListing;
-use App\Models\JobApplication;
+use App\Models\Job;
+use App\Models\Application;
 use App\Models\Company;
 
 
@@ -26,14 +26,13 @@ class CompanyController extends Controller
     }
     
     public function createJob(Request $request){
-        $job = new JobListing([
+        $job = new Job([
             'company_id' => $request->company_id,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
-            'wage_offered' => $request->wage_offered,
-            'start_time' => $request->start_time,
-            'end_time' => $request->start_time,
+            'wage_rate' => $request->wage_rate,
+            'start_time' => $request->date,
         ]);
 
         return response()->json([
@@ -43,7 +42,7 @@ class CompanyController extends Controller
     }
 
     public function deleteJob($id){
-        $job = JobListing::find($id);
+        $job = Job::find($id);
         $job->delete();
 
         return response()->json([
@@ -53,13 +52,12 @@ class CompanyController extends Controller
     //update job listing
     public function updateJob(Request $request){
 
-        $job = JobListing::find($request->id);
+        $job = Job::find($request->id);
         $job->title = $request->title;
         $job->description = $request->description;
         $job->location = $request->location;
-        $job->wage_offered = $request->wage_offered;
-        $job->start_time = $request->start_time;
-        $job->end_time = $request->end_time;
+        $job->wage_rate = $request->wage_rate;
+        $job->date = $request->date;
         $job->save();
 
         return response()->json([
@@ -67,31 +65,31 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function getJobApplications($id){
-        $jobApplications = JobApplication::where('job_id', $id)->get()->toArray();
+    public function getApplications($id){
+        $applications = Application::where('job_id', $id)->get()->toArray();
 
         return response()->json([
-            'jobApplications' => $jobApplications,
+            'applications' => $applications,
         ]);
     }
 
-    public function getJobApplication($id){
-        $jobApplication = JobApplication::find($id)->toArray();
+    public function getApplication($id){
+        $application = Application::find($id)->toArray();
 
         return response()->json([
-            'jobApplication' => $jobApplication,
+            'application' => $application,
         ]);
     }
 
     //update job application
-    public function updateJobApplication(Request $request){
+    public function updateApplication(Request $request){
 
-        $jobApplication = JobApplication::find($request->id);
-        $jobApplication->status = $request->status;
-        $jobApplication->save();
+        $application = Application::find($request->id);
+        $application->status = $request->status;
+        $application->save();
 
         return response()->json([
-            'message' => 'Job application updated successfully!',
+            'message' => 'Application updated successfully!',
         ]);
     }
 

@@ -38,10 +38,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/jobs/{id}', [WorkerController::class, 'getJob']);
 
     // Submit a job application
-    Route::post('/job-application', [WorkerController::class, 'jobApplication']);
+    Route::post('/application', [WorkerController::class, 'application']);
 
     // Delete a job application by ID
-    Route::delete('/job-application/{id}', [WorkerController::class, 'deleteJobApplication']);
+    Route::delete('/application/{id}', [WorkerController::class, 'deleteApplication']);
 
     Route::post('/jobs', [CompanyController::class, 'createJob']);
 
@@ -52,13 +52,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/jobs', [CompanyController::class, 'updateJob']);
 
     // Get job applications for a specific job by ID
-    Route::get('/jobs/{id}/job-applications', [CompanyController::class, 'getJobApplications']);
+    Route::get('/jobs/{id}/applications', [CompanyController::class, 'getApplications']);
 
     // Get a specific job application by ID
-    Route::get('/job-applications/{id}', [CompanyController::class, 'getJobApplication']);
+    Route::get('/applications/{id}', [CompanyController::class, 'getApplication']);
 
     // Update a job application
-    Route::put('/job-applications', [CompanyController::class, 'updateJobApplication']);
+    Route::put('/applications', [CompanyController::class, 'updateApplication']);
 
 });
 
