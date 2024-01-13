@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('contact_number')->nullable();
             $table->json('availability')->default(json_encode([true, true, true, true, true, true, true])); 
             $table->decimal('hourly_wage', 8, 2)->default(5);
+            $table->string('cv')->nullable();
             $table->timestamps();
         });
     }

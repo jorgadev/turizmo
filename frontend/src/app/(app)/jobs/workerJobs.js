@@ -32,7 +32,7 @@ export default function WorkerJobs() {
     return (
         <div className="py-8 h-[calc(100vh-65px)]">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
-                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg h-full p-6">
+                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg h-full p-6 mt-2">
                     {data?.jobs?.length > 0 ? (
                         <>
                             {data.jobs.map(job => (

@@ -9,6 +9,6 @@ class Worker extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'full_name', 'contact_number', 'availability', 'hourly_wage',
+        'user_id', 'full_name', 'contact_number', 'availability', 'hourly_wage', 'cv',
     ];
 }

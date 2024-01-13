@@ -9,56 +9,60 @@ use App\Models\Application;
 
 class WorkerController extends Controller
 {
+
+    // User
     public function show(Request $request)
     {
         $user = auth()->user();
-
-        // Retrieve worker details for the authenticated user
         $worker = Worker::where('user_id', $user->id)->first();
-
         if (!$worker) {
             return response()->json(['error' => 'Worker profile not found.'], 404);
         }
-
         return response()->json(['worker' => $worker]);
     }
 
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+        $worker = Worker::where('user_id', $user->id)->first();
+        $worker->update([
+            'full_name' => $request->input('fullName'),
+            'contact_number' => $request->input('contactNumber'),
+            'hourly_wage' => $request->input('hourlyWage'),
+            'availability' => $request->input('availability'),
+            'cv' => $request->input('cv'),
+        ]);
+        return response()->json(['message' => 'Profile updated successfully']);
+    }
+
+
+    // Job
     public function getJobs()
     {
-        // Retrieve all jobs
         $jobs = Job::all();
-
-        // Check if there are jobs
         if ($jobs->isEmpty()) {
             return response()->json(['message' => 'No jobs found.']);
         }
-
-        // Return the list of jobs as JSON response
         return response()->json(['jobs' => $jobs]);
     }
 
     public function getJob($id)
     {
         $job = Job::find($id)->toArray();
-
         return response()->json([
             'job' => $job,
         ]);
     }
 
+    // Application
     public function application(Request $request)
     {
-
-        //insert into applications table
         $application = new Application([
             'job_id' => $request->job_id,
             'worker_id' => $request->worker_id,
             'status' => 'pending',
         ]);
-
         $application->save();
-
-
         return response()->json([
             'message' => 'Application successful!',
         ]);
@@ -68,10 +72,8 @@ class WorkerController extends Controller
     {
         $application = Application::find($id);
         $application->delete();
-
         return response()->json([
             'message' => 'Application deleted!',
         ]);
     }
-
 }

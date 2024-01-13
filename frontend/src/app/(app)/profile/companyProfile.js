@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function CompanyProfile() {
+export default function CompanyProfile({ data }) {
     return <div>CompanyProfile</div>;
 }

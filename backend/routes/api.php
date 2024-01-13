@@ -21,15 +21,16 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
 Route::middleware(['auth:sanctum'])->group(function () {
+    // Worker profile routes
     Route::get('worker/me', [WorkerController::class, 'show']);
-});
+    Route::put('worker/update', [WorkerController::class, 'updateProfile']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+    // Company profile routes
     Route::get('company/me', [CompanyController::class, 'show']);
-});
-
-Route::middleware(['auth:sanctum'])->group(function () {
+    Route::put('company/update', [CompanyController::class, 'updateProfile']);
 
     // Get all jobs
     Route::get('/jobs', [WorkerController::class, 'getJobs']);
