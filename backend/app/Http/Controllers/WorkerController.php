@@ -60,6 +60,20 @@ class WorkerController extends Controller
     }
 
     // Application
+    public function getApplications()
+    {
+        $user = auth()->user();
+        $worker = Worker::where('user_id', $user->id)->first();
+    
+        if (!$worker) {
+            return response()->json(['error' => 'Worker profile not found.'], 404);
+        }
+    
+        $applications = $worker->applications()->with('job')->get();
+    
+        return response()->json(['applications' => $applications]);
+    }
+
     public function application(Request $request)
     {
         $user = auth()->user();

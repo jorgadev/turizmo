@@ -86,11 +86,15 @@ class CompanyController extends Controller
 
     
     // Application
-    public function getApplications($id){
-        $applications = Application::where('job_id', $id)->get()->toArray();
-        return response()->json([
-            'applications' => $applications,
-        ]);
+    public function getApplications()
+    {
+        $user = auth()->user();
+        $company = Company::where('user_id', $user->id)->first();
+        if (!$company) {
+            return response()->json(['error' => 'Company profile not found.'], 404);
+        }
+        $applications = $company->applications;
+        return response()->json(['applications' => $applications]);
     }
 
     public function getApplication($id){

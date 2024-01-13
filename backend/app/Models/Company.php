@@ -17,6 +17,11 @@ class Company extends Model
 
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'company_id', 'id');
+        return $this->hasMany(Job::class, 'company_id', 'user_id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 }
