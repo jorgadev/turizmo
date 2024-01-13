@@ -10,6 +10,6 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'manager_id', 'title', 'description', 'location', 'date', 'wage_rate',
+        'company_id', 'title', 'description', 'location', 'date', 'wage_rate',
     ];
 }

@@ -32,8 +32,10 @@ class CompanyController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'wage_rate' => $request->wage_rate,
-            'start_time' => $request->date,
+            'date' => $request->date,
         ]);
+
+        $job->save();
 
         return response()->json([
             'message' => 'Job created successfully!',

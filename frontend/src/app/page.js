@@ -11,7 +11,7 @@ export default function Home() {
                 <div className="text-center">
                     <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-white">
                         Turizmo - elevate{' '}
-                        <mark className="px-2 text-white bg-indigo-400 rounded-lg">
+                        <mark className="px-2 text-white bg-blue-500 rounded-lg">
                             your
                         </mark>{' '}
                         career

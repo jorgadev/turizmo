@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('job_id')->constrained("jobs");
+            $table->foreignId('user_id')->constrained("users");
             $table->enum('status', ['pending', 'accepted', 'rejected']);
             $table->timestamps();
         });

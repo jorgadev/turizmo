@@ -3,20 +3,24 @@ import axios from '@/lib/axios';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export const useFetch = (url, options = {}) => {
+const fetchData = async (url, method, options) => {
+    try {
+        const response = await axios({ method, url, ...options });
+        return response.data;
+    } catch (error) {
+        if (error.response.status !== 409) throw error;
+        // Handle the 409 status code (or other statuses) as needed
+        // For example, redirect to a verification page
+        router.push('/verify-email');
+    }
+};
+
+export const useFetch = (url, method = 'GET', options = {}) => {
     const router = useRouter();
 
     const { data, error, mutate, isValidating } = useSWR(
-        url,
-        () =>
-            axios
-                .get(url)
-                .then(res => res.data)
-                .catch(error => {
-                    if (error.response.status !== 409) throw error;
-
-                    router.push('/verify-email');
-                }),
+        [url, method], // Use both URL and method as key
+        () => fetchData(url, method, options),
         options,
     );
 
