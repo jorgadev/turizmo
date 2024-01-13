@@ -1,7 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { useAuth } from '@/hooks/auth';
-import { useFetch } from '@/hooks/fetch';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';

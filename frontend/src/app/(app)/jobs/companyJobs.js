@@ -60,6 +60,14 @@ export default function CompanyJobs() {
         }
     };
 
+    const handleDeleteJob = async e => {
+        e.preventDefault();
+    };
+
+    const handleApplyJob = async e => {
+        e.preventDefault();
+    };
+
     return (
         <div className="py-8 h-[calc(100vh-65px)]">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">

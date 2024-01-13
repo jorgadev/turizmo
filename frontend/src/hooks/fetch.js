@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const fetchData = async (url, method, options) => {
+    const router = useRouter();
+
     try {
         const response = await axios({ method, url, ...options });
         return response.data;
@@ -16,8 +18,6 @@ const fetchData = async (url, method, options) => {
 };
 
 export const useFetch = (url, method = 'GET', options = {}) => {
-    const router = useRouter();
-
     const { data, error, mutate, isValidating } = useSWR(
         [url, method], // Use both URL and method as key
         () => fetchData(url, method, options),
