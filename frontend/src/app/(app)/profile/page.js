@@ -24,9 +24,9 @@ export default function Profile() {
                     {data ? (
                         <>
                             {user.is_company ? (
-                                <CompanyProfile data={data} />
+                                <CompanyProfile data={data} mutate={mutate} />
                             ) : (
-                                <WorkerProfile data={data} />
+                                <WorkerProfile data={data} mutate={mutate} />
                             )}
                         </>
                     ) : (

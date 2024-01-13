@@ -9,10 +9,7 @@ import Label from '@/components/Label';
 import axios from '@/lib/axios';
 
 // Profile component
-export default function WorkerProfile({ data }) {
-    const { user } = useAuth({ middleware: 'auth' });
-
-    // State to manage form inputs
+export default function WorkerProfile({ data, mutate }) {
     const [fullName, setFullName] = useState(data?.worker?.full_name || '');
     const [contactNumber, setContactNumber] = useState(
         data?.worker?.contact_number || '',

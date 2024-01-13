@@ -27,7 +27,8 @@ class CompanyController extends Controller
         $company = Company::where('user_id', $user->id)->first();
 
         $company->update([
-            // Update company profile fields
+            'company_name' => $request->input('companyName'),
+            'contact_number' => $request->input('contactNumber'),
         ]);
 
         return response()->json(['message' => 'Profile updated successfully']);
