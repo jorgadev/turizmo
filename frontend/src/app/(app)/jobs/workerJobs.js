@@ -7,8 +7,10 @@ import { useAuth } from '@/hooks/auth';
 import JobCard from '@/components/JobCard';
 
 export default function WorkerJobs() {
-    const { user } = useAuth({ middleware: 'auth' });
-    const { data, error, mutate, isLoading } = useFetch('/api/jobs');
+    const { user, userDetails, mutateUserDetails } = useAuth({
+        middleware: 'auth',
+    });
+    const { data, error, mutate, isLoading } = useFetch('/api/worker/jobs');
 
     const handleApply = async jobId => {
         try {
@@ -20,6 +22,7 @@ export default function WorkerJobs() {
 
             if (response.status === 200) {
                 mutate();
+                mutateUserDetails();
             } else {
                 // Handle error
                 console.error('Error creating job');
@@ -32,7 +35,18 @@ export default function WorkerJobs() {
     return (
         <div className="py-8 h-[calc(100vh-65px)]">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
-                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg h-full p-6 mt-2">
+                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6">
+                    Hey{' '}
+                    <span className="font-semibold">
+                        {userDetails?.worker.full_name}
+                    </span>{' '}
+                    you have{' '}
+                    <span className="font-semibold">
+                        {userDetails?.worker.daily_application_limit}
+                    </span>{' '}
+                    applications left for today!
+                </div>
+                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6 mt-1">
                     {data?.jobs?.length > 0 ? (
                         <>
                             {data.jobs.map(job => (
@@ -45,7 +59,7 @@ export default function WorkerJobs() {
                             ))}
                         </>
                     ) : (
-                        <div className="flex items-center justify-center h-full">
+                        <div className="flex items-center justify-center">
                             {isLoading
                                 ? 'Loading...'
                                 : error

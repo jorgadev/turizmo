@@ -37,14 +37,19 @@ class WorkerController extends Controller
 
 
     // Job
-    public function getJobs()
+    public function getJobs(Request $request)
     {
-        $jobs = Job::all();
-        if ($jobs->isEmpty()) {
-            return response()->json(['message' => 'No jobs found.']);
-        }
+        $user = auth()->user();
+        $worker = Worker::where('user_id', $user->id)->first();
+    
+        // Get jobs that the user hasn't applied for
+        $jobs = Job::whereDoesntHave('applications', function ($query) use ($worker) {
+            $query->where('worker_id', $worker->user_id);
+        })->get();
+    
         return response()->json(['jobs' => $jobs]);
     }
+
 
     public function getJob($id)
     {
@@ -57,12 +62,23 @@ class WorkerController extends Controller
     // Application
     public function application(Request $request)
     {
+        $user = auth()->user();
+        $worker = Worker::where('user_id', $user->id)->first();
+
+         // Check if the daily limit is reached
+        if ($worker->daily_application_limit <= 0) {
+            return response()->json(['error' => 'Daily application limit reached.'], 400);
+        }
+
         $application = new Application([
             'job_id' => $request->job_id,
             'worker_id' => $request->worker_id,
             'status' => 'pending',
         ]);
         $application->save();
+
+        $worker->decrement('daily_application_limit');
+
         return response()->json([
             'message' => 'Application successful!',
         ]);

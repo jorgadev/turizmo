@@ -11,7 +11,7 @@ import JobCard from '@/components/JobCard';
 
 export default function CompanyJobs() {
     const { user } = useAuth({ middleware: 'auth' });
-    const { data, error, mutate, isLoading } = useFetch('/api/jobs');
+    const { data, error, mutate, isLoading } = useFetch('/api/company/jobs');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [jobForm, setJobForm] = useState({
         title: '',

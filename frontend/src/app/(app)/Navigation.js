@@ -41,6 +41,13 @@ const Navigation = ({ user }) => {
                                     ? 'Applications'
                                     : 'My Applications'}
                             </NavLink>
+                            {!user.is_company && (
+                                <NavLink
+                                    href="/pricing"
+                                    active={pathname === '/pricing'}>
+                                    Pricing
+                                </NavLink>
+                            )}
                         </div>
                     </div>
 
@@ -133,6 +140,13 @@ const Navigation = ({ user }) => {
                             active={router.pathname === '/applications'}>
                             Applications
                         </ResponsiveNavLink>
+                        {!user.is_company && (
+                            <ResponsiveNavLink
+                                href="/pricing"
+                                active={router.pathname === '/pricing'}>
+                                Pricing
+                            </ResponsiveNavLink>
+                        )}
                         <ResponsiveNavButton onClick={logout}>
                             Logout
                         </ResponsiveNavButton>

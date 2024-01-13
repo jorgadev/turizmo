@@ -18,6 +18,19 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             }),
     );
 
+    const { data: userDetails, mutate: mutateUserDetails } = useSWR(
+        user?.is_company ? '/api/company/me' : '/api/worker/me',
+        () =>
+            axios
+                .get(user?.is_company ? '/api/company/me' : '/api/worker/me')
+                .then(res => res.data)
+                .catch(error => {
+                    if (error.response.status !== 409) throw error;
+
+                    router.push('/verify-email');
+                }),
+    );
+
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
     const register = async ({ setErrors, ...props }) => {
@@ -118,5 +131,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resetPassword,
         resendEmailVerification,
         logout,
+
+        userDetails,
+        mutateUserDetails,
     };
 };

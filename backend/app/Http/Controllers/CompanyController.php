@@ -36,6 +36,17 @@ class CompanyController extends Controller
 
 
     // Job
+    public function getJobs()
+    {
+        $user = auth()->user();
+        $company = Company::where('user_id', $user->id)->first();
+        if (!$company) {
+            return response()->json(['error' => 'Company profile not found.'], 404);
+        }
+        $jobs = $company->jobs;
+        return response()->json(['jobs' => $jobs]);
+    }
+
     public function createJob(Request $request){
         $job = new Job([
             'company_id' => $request->company_id,

@@ -27,13 +27,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Worker profile routes
     Route::get('worker/me', [WorkerController::class, 'show']);
     Route::put('worker/update', [WorkerController::class, 'updateProfile']);
+    Route::get('worker/jobs', [WorkerController::class, 'getJobs']);
 
     // Company profile routes
     Route::get('company/me', [CompanyController::class, 'show']);
     Route::put('company/update', [CompanyController::class, 'updateProfile']);
+    Route::get('company/jobs', [CompanyController::class, 'getJobs']);
 
-    // Get all jobs
-    Route::get('/jobs', [WorkerController::class, 'getJobs']);
 
     // Get a specific job by ID
     Route::get('/jobs/{id}', [WorkerController::class, 'getJob']);

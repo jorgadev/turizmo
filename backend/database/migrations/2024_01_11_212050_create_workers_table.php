@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('availability')->default(json_encode([true, true, true, true, true, true, true])); 
             $table->decimal('hourly_wage', 8, 2)->default(5);
             $table->string('cv')->nullable();
+            $table->integer('daily_application_limit')->default(20);
             $table->timestamps();
         });
     }

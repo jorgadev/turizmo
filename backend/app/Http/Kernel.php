@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http;
+use App\Models\Worker;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -65,4 +66,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        // Reset daily application limit for all workers at midnight
+        $schedule->call(function () {
+            Worker::update(['daily_application_limit' => 20]);
+        })->dailyAt('00:00');
+    }
 }
