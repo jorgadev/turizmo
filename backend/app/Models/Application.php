@@ -14,7 +14,7 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'job_id', 'worker_id', 'status', // Add other columns as needed
+        'job_id', 'worker_id', 'status', 'company_id', // Add other columns as needed
     ];
 
     // Define the inverse relationship with Job
@@ -27,5 +27,10 @@ class Application extends Model
     public function worker()
     {
         return $this->belongsTo(Worker::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }

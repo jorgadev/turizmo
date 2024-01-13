@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('job_id')->constrained("jobs");
             $table->foreignId('worker_id')->constrained("users");
+            $table->foreignId('company_id')->constrained("users");
             $table->enum('status', ['pending', 'accepted', 'rejected']);
             $table->timestamps();
         });

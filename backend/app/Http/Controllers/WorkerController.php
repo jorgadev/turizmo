@@ -79,16 +79,25 @@ class WorkerController extends Controller
         $user = auth()->user();
         $worker = Worker::where('user_id', $user->id)->first();
 
-         // Check if the daily limit is reached
+        // Check if the daily limit is reached
         if ($worker->daily_application_limit <= 0) {
             return response()->json(['error' => 'Daily application limit reached.'], 400);
         }
 
+        $job = Job::find($request->job_id);
+
+        if (!$job) {
+            return response()->json(['error' => 'Job not found.'], 404);
+        }
+
         $application = new Application([
-            'job_id' => $request->job_id,
+            'job_id' => $job->id,
             'worker_id' => $request->worker_id,
+            'company_id' => $job->company_id, 
             'status' => 'pending',
         ]);
+
+
         $application->save();
 
         $worker->decrement('daily_application_limit');

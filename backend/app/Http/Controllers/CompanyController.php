@@ -90,10 +90,14 @@ class CompanyController extends Controller
     {
         $user = auth()->user();
         $company = Company::where('user_id', $user->id)->first();
+
         if (!$company) {
             return response()->json(['error' => 'Company profile not found.'], 404);
         }
-        $applications = $company->applications;
+
+        // Retrieve applications with the same company_id as the user's user_id
+        $applications = Application::where('company_id', $user->id)->with('job')->get();
+
         return response()->json(['applications' => $applications]);
     }
 
