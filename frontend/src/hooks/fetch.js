@@ -1,11 +1,8 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 const fetchData = async (url, method, options) => {
-    const router = useRouter();
-
     try {
         const response = await axios({ method, url, ...options });
         return response.data;
@@ -13,7 +10,7 @@ const fetchData = async (url, method, options) => {
         if (error.response.status !== 409) throw error;
         // Handle the 409 status code (or other statuses) as needed
         // For example, redirect to a verification page
-        router.push('/verify-email');
+        console.error('Verify email');
     }
 };
 

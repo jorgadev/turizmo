@@ -1,5 +1,1 @@
-{
-  "/(app)/profile/page": "app/(app)/profile/page.js",
-  "/(app)/pricing/page": "app/(app)/pricing/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js"
-}
+{}
