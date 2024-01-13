@@ -1,15 +1,8 @@
 import React from 'react';
 
-const ApplicationCard = ({ application, onCancel }) => {
-    const { id, status, created_at, job } = application;
-    const {
-        title,
-        description,
-        location,
-        wage_rate,
-        company_id,
-        created_at: jobCreatedAt,
-    } = job;
+const ApplicationCard = ({ application }) => {
+    const { status, created_at, job } = application;
+    const { title, description, location, wage_rate, company_id } = job;
 
     return (
         <div className="max-w p-4 border border-gray-300 rounded-md mb-4">

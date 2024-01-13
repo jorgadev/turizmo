@@ -2,18 +2,10 @@
 
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import { useAuth } from '@/hooks/auth';
 import ApplicationCard from '@/components/ApplicationCard';
 
 export default function WorkerApplications() {
-    const { user, userDetails, mutateUserDetails } = useAuth({
-        middleware: 'auth',
-    });
-    const { data, error, mutate, isLoading } = useFetch(
-        '/api/worker/applications',
-    );
-
-    console.log(data);
+    const { data, error, isLoading } = useFetch('/api/worker/applications');
 
     return (
         <div className="py-8 h-[calc(100vh-65px)]">

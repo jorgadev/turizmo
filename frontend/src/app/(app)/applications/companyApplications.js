@@ -1,22 +1,12 @@
 'use client';
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import { useAuth } from '@/hooks/auth';
 import ApplicationCard from '@/components/ApplicationCard';
 
 // Define the CompanyApplications component
 export default function CompanyApplications() {
-    // Use authentication hook
-    const { user, userDetails, mutateUserDetails } = useAuth({
-        middleware: 'auth',
-    });
-
     // Use fetch hook to get company applications
-    const { data, error, mutate, isLoading } = useFetch(
-        '/api/company/applications',
-    );
-
-    console.log(data);
+    const { data, error, isLoading } = useFetch('/api/company/applications');
 
     // Render the component
     return (
@@ -29,9 +19,6 @@ export default function CompanyApplications() {
                                 <ApplicationCard
                                     key={application.id}
                                     application={application}
-                                    onCancel={() =>
-                                        handleCancel(application.id)
-                                    }
                                 />
                             ))}
                         </>
