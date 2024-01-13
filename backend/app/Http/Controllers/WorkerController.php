@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Jobs;
-use App\Models\Applications;
 use App\Models\Worker;
+use App\Models\Job;
+use App\Models\Application;
 
 class WorkerController extends Controller
 {
@@ -26,7 +26,7 @@ class WorkerController extends Controller
     public function getJobs()
     {
         // Retrieve all jobs
-        $jobs = Jobs::all();
+        $jobs = Job::all();
 
         // Check if there are jobs
         if ($jobs->isEmpty()) {
@@ -39,7 +39,7 @@ class WorkerController extends Controller
 
     public function getJob($id)
     {
-        $job = Jobs::find($id)->toArray();
+        $job = Job::find($id)->toArray();
 
         return response()->json([
             'job' => $job,
@@ -50,12 +50,14 @@ class WorkerController extends Controller
     {
 
         //insert into applications table
-
-        $application = new Applications([
+        $application = new Application([
             'job_id' => $request->job_id,
             'worker_id' => $request->worker_id,
             'status' => 'pending',
         ]);
+
+        $application->save();
+
 
         return response()->json([
             'message' => 'Application successful!',
@@ -64,7 +66,7 @@ class WorkerController extends Controller
 
     public function deleteApplication($id)
     {
-        $application = applications::find($id);
+        $application = Application::find($id);
         $application->delete();
 
         return response()->json([
