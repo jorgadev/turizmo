@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import ApplicationCard from '@/components/ApplicationCard';
+import ApplicationCardWorker from '@/components/ApplicationCardWorker';
 
 export default function WorkerApplications() {
     const { data, error, isLoading } = useFetch('/api/worker/applications');
@@ -14,7 +14,7 @@ export default function WorkerApplications() {
                     {data?.applications?.length > 0 ? (
                         <>
                             {data.applications.map(application => (
-                                <ApplicationCard
+                                <ApplicationCardWorker
                                     key={application.id}
                                     application={application}
                                 />

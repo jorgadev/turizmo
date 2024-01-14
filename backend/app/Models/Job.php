@@ -14,7 +14,7 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company_id', 'title', 'description', 'location', 'date', 'wage_rate',
+        'company_id', 'title', 'description', 'location', 'date', 'wage_rate', 'is_active'
     ];
 
     // Define the one-to-many relationship with Application

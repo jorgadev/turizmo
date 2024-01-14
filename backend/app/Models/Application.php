@@ -26,7 +26,7 @@ class Application extends Model
     // Define the inverse relationship with Worker
     public function worker()
     {
-        return $this->belongsTo(Worker::class);
+        return $this->belongsTo(Worker::class, 'worker_id', 'user_id');
     }
 
     public function company()

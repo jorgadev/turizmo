@@ -42,8 +42,9 @@ class WorkerController extends Controller
         $user = auth()->user();
         $worker = Worker::where('user_id', $user->id)->first();
     
-        // Get jobs that the user hasn't applied for
-        $jobs = Job::whereDoesntHave('applications', function ($query) use ($worker) {
+        // Get active jobs that the user hasn't applied for
+        $jobs = Job::where('is_active', 1)
+        ->whereDoesntHave('applications', function ($query) use ($worker) {
             $query->where('worker_id', $worker->user_id);
         })->get();
     

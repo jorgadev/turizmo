@@ -1,12 +1,14 @@
 'use client';
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import ApplicationCard from '@/components/ApplicationCard';
+import ApplicationCardCompany from '@/components/ApplicationCardCompany';
 
 // Define the CompanyApplications component
 export default function CompanyApplications() {
     // Use fetch hook to get company applications
-    const { data, error, isLoading } = useFetch('/api/company/applications');
+    const { data, error, mutate, isLoading } = useFetch(
+        '/api/company/applications',
+    );
 
     // Render the component
     return (
@@ -16,7 +18,9 @@ export default function CompanyApplications() {
                     {data?.applications?.length > 0 ? (
                         <>
                             {data.applications.map(application => (
-                                <ApplicationCard
+                                <ApplicationCardCompany
+                                    mutate={mutate}
+                                    isCompany={true}
                                     key={application.id}
                                     application={application}
                                 />

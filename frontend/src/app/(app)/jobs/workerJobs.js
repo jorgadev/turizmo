@@ -4,7 +4,7 @@ import React from 'react';
 import { useFetch } from '@/hooks/fetch';
 import axios from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
-import JobCard from '@/components/JobCard';
+import JobCardWorker from '@/components/JobCardWorker';
 
 export default function WorkerJobs() {
     const { user, userDetails, mutateUserDetails } = useAuth({
@@ -50,7 +50,7 @@ export default function WorkerJobs() {
                     {data?.jobs?.length > 0 ? (
                         <>
                             {data.jobs.map(job => (
-                                <JobCard
+                                <JobCardWorker
                                     key={job.id}
                                     job={job}
                                     isCompany={user.is_company}

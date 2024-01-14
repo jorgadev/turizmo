@@ -7,7 +7,7 @@ import Input from '@/components/Input';
 import Label from '@/components/Label';
 import axios from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
-import JobCard from '@/components/JobCard';
+import JobCardCompany from '@/components/JobCardCompany';
 
 export default function CompanyJobs() {
     const { user } = useAuth({ middleware: 'auth' });
@@ -51,6 +51,13 @@ export default function CompanyJobs() {
             if (response.status === 200) {
                 mutate();
                 closeModal();
+                setJobForm({
+                    title: '',
+                    description: '',
+                    location: '',
+                    date: '',
+                    wage_rate: '',
+                });
             } else {
                 // Handle error
                 console.error('Error creating job');
@@ -75,7 +82,7 @@ export default function CompanyJobs() {
                     {data?.jobs?.length > 0 ? (
                         <>
                             {data.jobs.map(job => (
-                                <JobCard
+                                <JobCardCompany
                                     key={job.id}
                                     job={job}
                                     isCompany={user.is_company}

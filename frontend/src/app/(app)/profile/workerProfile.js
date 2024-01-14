@@ -7,7 +7,7 @@ import Label from '@/components/Label';
 import axios from '@/lib/axios';
 
 // Profile component
-export default function WorkerProfile({ data, mutate }) {
+export default function WorkerProfile({ data, mutate, isLoading }) {
     const [fullName, setFullName] = useState(data?.worker?.full_name || '');
     const [contactNumber, setContactNumber] = useState(
         data?.worker?.contact_number || '',

@@ -19,6 +19,7 @@ class CreateJobsTable extends Migration
             $table->string('location');
             $table->date('date');
             $table->decimal('wage_rate', 10, 2);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

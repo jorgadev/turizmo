@@ -1,6 +1,8 @@
 import React from 'react';
+import Button from '@/components/Button';
+import axios from '@/lib/axios';
 
-const ApplicationCard = ({ application }) => {
+export default function ApplicationCardWorker({ application }) {
     const { status, created_at, job } = application;
     const { title, description, location, wage_rate, company_id } = job;
 
@@ -24,6 +26,4 @@ const ApplicationCard = ({ application }) => {
             </div>
         </div>
     );
-};
-
-export default ApplicationCard;
+}

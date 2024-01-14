@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@/components/Button';
 
-const JobCard = ({ job, isCompany, onApply, onDelete }) => {
+export default function JobCardWorker({ job, isCompany, onApply, onDelete }) {
     const { title, description, location, wage_rate, company_id } = job;
 
     return (
@@ -23,6 +23,4 @@ const JobCard = ({ job, isCompany, onApply, onDelete }) => {
             )}
         </div>
     );
-};
-
-export default JobCard;
+}

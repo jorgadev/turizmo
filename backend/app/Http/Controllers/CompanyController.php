@@ -71,18 +71,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function updateJob(Request $request){
-        $job = Job::find($request->id);
-        $job->title = $request->title;
-        $job->description = $request->description;
-        $job->location = $request->location;
-        $job->wage_rate = $request->wage_rate;
-        $job->date = $request->date;
-        $job->save();
-        return response()->json([
-            'message' => 'Job updated successfully!',
-        ]);
-    }
+ 
 
     
     // Application
@@ -96,7 +85,7 @@ class CompanyController extends Controller
         }
 
         // Retrieve applications with the same company_id as the user's user_id
-        $applications = Application::where('company_id', $user->id)->with('job')->get();
+        $applications = Application::where('company_id', $user->id)->with('job', 'worker')->get();
 
         return response()->json(['applications' => $applications]);
     }
@@ -108,12 +97,34 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function updateApplication(Request $request){
-        $application = Application::find($request->id);
+    public function updateApplication(Request $request, $id){
+        $application = Application::find($id);
         $application->status = $request->status;
         $application->save();
         return response()->json([
             'message' => 'Application updated successfully!',
+        ]);
+    }
+
+    public function updateJob(Request $request, $id){
+        $job = Job::find($id);
+        $job->title = $request->title;
+        $job->description = $request->description;
+        $job->location = $request->location;
+        $job->wage_rate = $request->wage_rate;
+        $job->date = $request->date;
+        $job->save();
+        return response()->json([
+            'message' => 'Job updated successfully!',
+        ]);
+    }
+
+    public function doneJob(Request $request, $id){
+        $job = Job::find($id);
+        $job->is_active = false;
+        $job->save();
+        return response()->json([
+            'message' => 'Job done successfully!',
         ]);
     }
 }
