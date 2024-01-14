@@ -65,9 +65,19 @@ class CompanyController extends Controller
 
     public function deleteJob($id){
         $job = Job::find($id);
+    
+        if (!$job) {
+            return response()->json(['error' => 'Job not found.'], 404);
+        }
+    
+        // Delete all associated applications first
+        $job->applications()->delete();
+    
+        // Now, delete the job
         $job->delete();
+    
         return response()->json([
-            'message' => 'Job deleted!',
+            'message' => 'Job and associated applications deleted successfully!',
         ]);
     }
 
@@ -106,25 +116,20 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function updateJob(Request $request, $id){
+    public function updateJob(Request $request, $id)
+    {
         $job = Job::find($id);
-        $job->title = $request->title;
-        $job->description = $request->description;
-        $job->location = $request->location;
-        $job->wage_rate = $request->wage_rate;
-        $job->date = $request->date;
-        $job->save();
+
+        if (!$job) {
+            return response()->json(['error' => 'Job not found.'], 404);
+        }
+
+        // Update job fields based on the request
+        $job->update($request->all());
+
         return response()->json([
             'message' => 'Job updated successfully!',
         ]);
     }
 
-    public function doneJob(Request $request, $id){
-        $job = Job::find($id);
-        $job->is_active = false;
-        $job->save();
-        return response()->json([
-            'message' => 'Job done successfully!',
-        ]);
-    }
 }

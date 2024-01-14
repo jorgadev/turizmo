@@ -37,7 +37,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/jobs', [CompanyController::class, 'createJob']);
     Route::delete('/jobs/{id}', [CompanyController::class, 'deleteJob']);
     Route::put('/jobs/{id}', [CompanyController::class, 'updateJob']);
-    Route::put('/job-done/{id}', [CompanyController::class, 'doneJob']);
     Route::put('/application/{id}', [CompanyController::class, 'updateApplication']);
 });
 

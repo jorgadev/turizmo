@@ -46,7 +46,7 @@ class WorkerController extends Controller
         $jobs = Job::where('is_active', 1)
         ->whereDoesntHave('applications', function ($query) use ($worker) {
             $query->where('worker_id', $worker->user_id);
-        })->get();
+        })->with('company')->get();
     
         return response()->json(['jobs' => $jobs]);
     }

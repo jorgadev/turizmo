@@ -2,7 +2,15 @@ import React from 'react';
 import Button from '@/components/Button';
 
 export default function JobCardWorker({ job, isCompany, onApply, onDelete }) {
-    const { title, description, location, wage_rate, company_id } = job;
+    const {
+        title,
+        description,
+        location,
+        wage_rate,
+        company_id,
+        company,
+    } = job;
+    const { company_name } = company;
 
     return (
         <div className="max-w p-4 border border-gray-300 rounded-md mb-4">
@@ -12,7 +20,9 @@ export default function JobCardWorker({ job, isCompany, onApply, onDelete }) {
             <p className="text-gray-600 mb-2 text-sm">
                 Wage Rate: €{wage_rate}
             </p>
-            <p className="text-gray-600 mb-2 text-sm">Company: {company_id}</p>
+            <p className="text-gray-600 mb-2 text-sm">
+                Company: {company_name}
+            </p>
 
             {isCompany ? (
                 <Button className="!bg-red-500" onClick={onDelete}>

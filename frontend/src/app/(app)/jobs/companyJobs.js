@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import Button from '@/components/Button';
 import { useFetch } from '@/hooks/fetch';
@@ -12,7 +11,12 @@ import JobCardCompany from '@/components/JobCardCompany';
 export default function CompanyJobs() {
     const { user } = useAuth({ middleware: 'auth' });
     const { data, error, mutate, isLoading } = useFetch('/api/company/jobs');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [modal, setModal] = useState({
+        open: false,
+        view: 'create',
+    });
+
     const [jobForm, setJobForm] = useState({
         title: '',
         description: '',
@@ -20,15 +24,6 @@ export default function CompanyJobs() {
         date: '',
         wage_rate: '',
     });
-
-    const openModal = () => {
-        console.log('haha');
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
 
     const handleInputChange = e => {
         const { name, value } = e.target;
@@ -50,7 +45,7 @@ export default function CompanyJobs() {
 
             if (response.status === 200) {
                 mutate();
-                closeModal();
+                setModal({ open: false, view: 'create' });
                 setJobForm({
                     title: '',
                     description: '',
@@ -67,14 +62,6 @@ export default function CompanyJobs() {
         }
     };
 
-    const handleDeleteJob = async e => {
-        e.preventDefault();
-    };
-
-    const handleApplyJob = async e => {
-        e.preventDefault();
-    };
-
     return (
         <div className="py-8 h-[calc(100vh-65px)]">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
@@ -85,13 +72,16 @@ export default function CompanyJobs() {
                                 <JobCardCompany
                                     key={job.id}
                                     job={job}
-                                    isCompany={user.is_company}
-                                    onDelete={() => handleDeleteJob(job.id)}
-                                    onApply={() => handleApplyJob(job.id)}
+                                    mutate={mutate}
+                                    setModal={setModal}
+                                    setJobForm={setJobForm}
                                 />
                             ))}
                             <div className="text-center mt-6">
-                                <Button onClick={openModal}>
+                                <Button
+                                    onClick={() =>
+                                        setModal({ open: true, view: 'create' })
+                                    }>
                                     + Create New Job
                                 </Button>
                             </div>
@@ -103,14 +93,17 @@ export default function CompanyJobs() {
                             ) : error ? (
                                 error?.message
                             ) : (
-                                <Button onClick={openModal}>
+                                <Button
+                                    onClick={() =>
+                                        setModal({ open: true, view: 'create' })
+                                    }>
                                     + Create New Job
                                 </Button>
                             )}
                         </div>
                     )}
                     {/* Modal */}
-                    {isModalOpen && (
+                    {modal.open && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
                             <div className="relative bg-white rounded-lg shadow-md p-5 max-w-md mx-auto">
                                 {/* Modal content */}
@@ -181,14 +174,13 @@ export default function CompanyJobs() {
                                         <Input
                                             id="wageRate"
                                             name="wage_rate"
-                                            value={jobForm.wageRate}
+                                            value={jobForm.wage_rate}
                                             onChange={handleInputChange}
                                             type="number"
                                             required
                                         />
                                     </div>
 
-                                    {/* Submit button */}
                                     <div className="col-span-2">
                                         <Button type="submit">
                                             Create Job
@@ -198,7 +190,12 @@ export default function CompanyJobs() {
 
                                 {/* Close button */}
                                 <button
-                                    onClick={closeModal}
+                                    onClick={() =>
+                                        setModal({
+                                            open: false,
+                                            view: 'create',
+                                        })
+                                    }
                                     className="absolute top-0 right-0 mt-2 mr-2 text-gray-400 hover:text-gray-600">
                                     <svg
                                         className="w-4 h-4"

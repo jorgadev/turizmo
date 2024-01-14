@@ -2,19 +2,27 @@ import React from 'react';
 import Button from '@/components/Button';
 import axios from '@/lib/axios';
 
-export default function JobCardCompany({ job }) {
-    const { id, title, description, location, wage_rate, company_id } = job;
+export default function JobCardCompany({ job, setModal, setJobForm, mutate }) {
+    const {
+        id,
+        title,
+        description,
+        location,
+        wage_rate,
+        date,
+        is_active,
+    } = job;
 
-    const onDelete = () => {};
-    const onEdit = () => {};
-    const onDone = async e => {
+    const handleJobStatus = async e => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`/api/job-done/${id}`);
+            const response = await axios.put(`/api/jobs/${id}`, {
+                is_active: !is_active,
+            });
 
             if (response.status === 200) {
-                // mutate();
+                mutate();
             } else {
                 console.error('Error updating application');
             }
@@ -23,24 +31,58 @@ export default function JobCardCompany({ job }) {
         }
     };
 
+    const handleDeleteJob = async e => {
+        try {
+            const response = await axios.delete(`/api/jobs/${id}`);
+
+            if (response.status === 200) {
+                mutate();
+            } else {
+                console.error('Error deleting job');
+            }
+        } catch (error) {
+            console.error('Error deleting job', error);
+        }
+    };
+
+    const handleEditJob = async e => {
+        e.preventDefault();
+    };
+
     return (
-        <div className="max-w p-4 border border-gray-300 rounded-md mb-4">
+        <div
+            className={`max-w p-4 border border-gray-300 rounded-md mb-4 ${
+                !is_active && 'bg-gray-100'
+            }`}>
             <h2 className="text-lg font-semibold mb-2">{title}</h2>
             <p className="text-gray-600 mb-2 text-sm">{description}</p>
             <p className="text-gray-600 mb-2 text-sm">Location: {location}</p>
             <p className="text-gray-600 mb-2 text-sm">
                 Wage Rate: €{wage_rate}
             </p>
-            <p className="text-gray-600 mb-2 text-sm">Company: {company_id}</p>
 
-            <Button className="!bg-red-500" onClick={onDelete}>
-                Delete
-            </Button>
-            <Button className="!bg-blue-500" onClick={onEdit}>
+            <Button
+                className="!bg-blue-500"
+                onClick={() => {
+                    setModal({ open: true, view: 'edit' });
+                    setJobForm({
+                        title,
+                        description,
+                        location,
+                        date,
+                        wage_rate,
+                    });
+                }}>
                 Edit
             </Button>
-            <Button className="!bg-green-500" onClick={onDone}>
-                Done
+            <Button
+                className={`${is_active ? 'bg-gray-500' : 'bg-green-500'}`}
+                onClick={handleJobStatus}>
+                {is_active ? 'Deactivate' : 'Activate'}
+            </Button>
+
+            <Button className="bg-red-500" onClick={handleDeleteJob}>
+                Delete
             </Button>
         </div>
     );
