@@ -19,6 +19,7 @@ const Page = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const submitForm = event => {
         event.preventDefault();
@@ -31,6 +32,7 @@ const Page = () => {
             password_confirmation: passwordConfirmation,
             is_company: true,
             setErrors,
+            setIsLoading,
         });
     };
 
@@ -114,7 +116,9 @@ const Page = () => {
                     Already registered?
                 </Link>
 
-                <Button className="ml-4">Register</Button>
+                <Button disabled={isLoading} className="ml-4">
+                    Register
+                </Button>
             </div>
         </form>
     );

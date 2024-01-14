@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import axios from '@/lib/axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
@@ -33,10 +33,11 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
-    const register = async ({ setErrors, ...props }) => {
+    const register = async ({ setErrors, setIsLoading, ...props }) => {
         await csrf();
 
         setErrors([]);
+        setIsLoading(true);
 
         axios
             .post('/register', props)
@@ -45,14 +46,16 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 if (error.response.status !== 422) throw error;
 
                 setErrors(error.response.data.errors);
-            });
+            })
+            .finally(() => setIsLoading(false));
     };
 
-    const login = async ({ setErrors, setStatus, ...props }) => {
+    const login = async ({ setErrors, setStatus, setIsLoading, ...props }) => {
         await csrf();
 
         setErrors([]);
         setStatus(null);
+        setIsLoading(true);
 
         axios
             .post('/login', props)
@@ -61,14 +64,21 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 if (error.response.status !== 422) throw error;
 
                 setErrors(error.response.data.errors);
-            });
+            })
+            .finally(() => setIsLoading(false));
     };
 
-    const forgotPassword = async ({ setErrors, setStatus, email }) => {
+    const forgotPassword = async ({
+        setErrors,
+        setStatus,
+        email,
+        setIsLoading,
+    }) => {
         await csrf();
 
         setErrors([]);
         setStatus(null);
+        setIsLoading(true);
 
         axios
             .post('/forgot-password', { email })
@@ -77,7 +87,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 if (error.response.status !== 422) throw error;
 
                 setErrors(error.response.data.errors);
-            });
+            })
+            .finally(() => setIsLoading(false));
     };
 
     const resetPassword = async ({ setErrors, setStatus, ...props }) => {
