@@ -18,30 +18,26 @@ export default function Profile() {
     }
 
     return (
-        <div className="py-8 h-[calc(100vh-64px)]">
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
-                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg flex justify-center p-6 h-full">
-                    {data ? (
-                        <>
-                            {user.is_company ? (
-                                <CompanyProfile data={data} mutate={mutate} />
-                            ) : (
-                                <WorkerProfile data={data} mutate={mutate} />
-                            )}
-                        </>
+        <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-128px)]">
+            {data ? (
+                <>
+                    {user.is_company ? (
+                        <CompanyProfile data={data} mutate={mutate} />
                     ) : (
-                        <div className="flex items-center justify-center h-full">
-                            {isLoading ? (
-                                <LoadingSpinner />
-                            ) : error ? (
-                                error?.message
-                            ) : (
-                                ''
-                            )}
-                        </div>
+                        <WorkerProfile data={data} mutate={mutate} />
+                    )}
+                </>
+            ) : (
+                <div className="flex items-center justify-center h-full">
+                    {isLoading ? (
+                        <LoadingSpinner />
+                    ) : error ? (
+                        error?.message
+                    ) : (
+                        ''
                     )}
                 </div>
-            </div>
+            )}
         </div>
     );
 }
