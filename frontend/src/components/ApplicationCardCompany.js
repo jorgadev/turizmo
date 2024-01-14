@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 
 export default function ApplicationCardWorker({ application, color, mutate }) {
     const { id, status, job, worker, created_at } = application;
-    const { full_name, cv, hourly_wage } = worker;
+    const { full_name, cv, hourly_wage, contact_number } = worker;
     const { title, location } = job;
 
     const handleAcceptOrReject = async status => {
@@ -26,7 +26,7 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
 
     return (
         <div className="w-full mx-auto mb-12 flex items-center">
-            <div className={`w-20 h-20 ${color} mr-4`}></div>
+            <div className={`w-20 h-20 ${color} mr-4 rounded-lg`}></div>
 
             <div className="flex flex-row justify-between flex-1 h-20">
                 <div className="flex flex-col justify-between w-full">
@@ -45,7 +45,7 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
                     </div>
                 </div>
 
-                {status === 'pending' && (
+                {status === 'pending' ? (
                     <div className="flex justify-center items-center pl-6 ">
                         <Button
                             onClick={() => handleAcceptOrReject('accepted')}
@@ -58,6 +58,12 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
                             Reject
                         </Button>
                     </div>
+                ) : status === 'accepted' ? (
+                    <div className="flex justify-center items-center text-sm pr-6">
+                        <p>{contact_number}</p>
+                    </div>
+                ) : (
+                    ''
                 )}
             </div>
         </div>
