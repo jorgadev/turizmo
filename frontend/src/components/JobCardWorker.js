@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@/components/Button';
 
-export default function JobCardWorker({ job, onApply, onDelete }) {
+export default function JobCardWorker({ job, onApply }) {
     const { title, description, location, wage_rate, company } = job;
     const { company_name } = company;
 

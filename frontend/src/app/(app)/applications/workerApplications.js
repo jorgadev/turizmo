@@ -3,34 +3,50 @@
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
 import ApplicationCardWorker from '@/components/ApplicationCardWorker';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import ApplicationsBlock from '@/components/ApplicationsBlock';
 
 export default function WorkerApplications() {
     const { data, error, isLoading } = useFetch('/api/worker/applications');
 
+    const acceptedApplications = data?.applications.filter(
+        application => application.status === 'accepted',
+    );
+    const rejectedApplications = data?.applications.filter(
+        application => application.status === 'rejected',
+    );
+    const pendingApplications = data?.applications.filter(
+        application => application.status === 'pending',
+    );
+
     return (
-        <div className="py-8 h-[calc(100vh-65px)]">
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
-                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6 mt-1">
-                    {data?.applications?.length > 0 ? (
-                        <>
-                            {data.applications.map(application => (
-                                <ApplicationCardWorker
-                                    key={application.id}
-                                    application={application}
-                                />
-                            ))}
-                        </>
+        <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-128px)]">
+            {data?.applications?.length > 0 ? (
+                <React.Fragment>
+                    <ApplicationsBlock
+                        type="accepted"
+                        applications={acceptedApplications}
+                    />
+                    <ApplicationsBlock
+                        type="pending"
+                        applications={pendingApplications}
+                    />
+                    <ApplicationsBlock
+                        type="rejected"
+                        applications={rejectedApplications}
+                    />
+                </React.Fragment>
+            ) : (
+                <div className="flex items-center justify-center w-full h-full">
+                    {isLoading ? (
+                        <LoadingSpinner />
+                    ) : error ? (
+                        error?.message
                     ) : (
-                        <div className="flex items-center justify-center">
-                            {isLoading
-                                ? 'Loading...'
-                                : error
-                                ? error?.message
-                                : 'No applications found...'}
-                        </div>
+                        'No applications found...'
                     )}
                 </div>
-            </div>
+            )}
         </div>
     );
 }

@@ -44,7 +44,7 @@ export default function WorkerJobs() {
                 </span>{' '}
                 applications left for today. Keep it up!
             </div>
-            <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-202px)]">
+            <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-204px)]">
                 {data?.jobs?.length > 0 ? (
                     <>
                         {data.jobs.map(job => (
