@@ -1,42 +1,59 @@
 'use client';
+
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import ApplicationCardCompany from '@/components/ApplicationCardCompany';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import ApplicationsBlock from '@/components/ApplicationsBlock';
 
-// Define the CompanyApplications component
-export default function CompanyApplications() {
-    // Use fetch hook to get company applications
+export default function WorkerApplications() {
     const { data, error, mutate, isLoading } = useFetch(
         '/api/company/applications',
     );
 
-    // Render the component
+    const acceptedApplications = data?.applications.filter(
+        application => application.status === 'accepted',
+    );
+    const rejectedApplications = data?.applications.filter(
+        application => application.status === 'rejected',
+    );
+    const pendingApplications = data?.applications.filter(
+        application => application.status === 'pending',
+    );
+
     return (
-        <div className="py-8 h-[calc(100vh-65px)]">
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
-                <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6 mt-1">
-                    {data?.applications?.length > 0 ? (
-                        <>
-                            {data.applications.map(application => (
-                                <ApplicationCardCompany
-                                    mutate={mutate}
-                                    isCompany={true}
-                                    key={application.id}
-                                    application={application}
-                                />
-                            ))}
-                        </>
+        <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-128px)]">
+            {data?.applications?.length > 0 ? (
+                <React.Fragment>
+                    <ApplicationsBlock
+                        role="company"
+                        type="accepted"
+                        mutate={mutate}
+                        applications={acceptedApplications}
+                    />
+                    <ApplicationsBlock
+                        role="company"
+                        type="pending"
+                        mutate={mutate}
+                        applications={pendingApplications}
+                    />
+                    <ApplicationsBlock
+                        role="company"
+                        type="rejected"
+                        mutate={mutate}
+                        applications={rejectedApplications}
+                    />
+                </React.Fragment>
+            ) : (
+                <div className="flex items-center justify-center w-full h-full">
+                    {isLoading ? (
+                        <LoadingSpinner />
+                    ) : error ? (
+                        error?.message
                     ) : (
-                        <div className="flex items-center justify-center">
-                            {isLoading
-                                ? 'Loading...'
-                                : error
-                                ? error?.message
-                                : 'No applications found...'}
-                        </div>
+                        'No applications found...'
                     )}
                 </div>
-            </div>
+            )}
         </div>
     );
 }

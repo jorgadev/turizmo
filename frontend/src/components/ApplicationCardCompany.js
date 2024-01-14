@@ -1,16 +1,12 @@
 import React from 'react';
 import Button from '@/components/Button';
 import axios from '@/lib/axios';
+import dayjs from 'dayjs';
 
-export default function ApplicationCardCompany({
-    application,
-    isCompany,
-    mutate,
-}) {
-    const { id, status, created_at, worker, job } = application;
-    const { full_name, hourly_wage, cv } = worker;
-
-    const { title } = job;
+export default function ApplicationCardWorker({ application, color, mutate }) {
+    const { id, status, job, worker, created_at } = application;
+    const { full_name, cv, hourly_wage } = worker;
+    const { title, location } = job;
 
     const handleAcceptOrReject = async status => {
         try {
@@ -29,38 +25,39 @@ export default function ApplicationCardCompany({
     };
 
     return (
-        <div className="max-w p-4 border border-gray-300 rounded-md mb-4">
-            <h2 className="text-lg font-semibold mb-2">
-                {full_name} <span className="font-normal">applied for</span>{' '}
-                {title}
-            </h2>
-            <p className="text-gray-600 mb-2 text-sm">
-                Hourly Wage: €{hourly_wage}
-            </p>
-            <p className="text-gray-600 mb-2 text-sm">CV: {cv}</p>
+        <div className="w-full mx-auto mb-12 flex items-center">
+            <div className={`w-20 h-20 ${color} mr-4`}></div>
 
-            <div className="flex items-center justify-between mt-4">
-                <p className="text-gray-600 text-sm">
-                    Application Status: {status}
-                </p>
-                <p className="text-gray-600 text-sm">
-                    Application Date: {created_at}
-                </p>
+            <div className="flex flex-row justify-between flex-1 h-20">
+                <div className="flex flex-col justify-between w-full">
+                    <h2 className="font-semibold">
+                        {full_name} <span className="font-normal"> → </span>
+                        {title} ({location})
+                    </h2>
 
-                {/* Render the "Accept" button only for company */}
-                {isCompany && status === 'pending' && (
-                    <>
+                    <div className="grid grid-cols-1">
+                        <p className="text-xs">CV: {cv}</p>
+                        <p className="text-xs">Hourly Wage: {hourly_wage}€</p>
+                        <p className="text-xs">
+                            Application Date:{' '}
+                            {dayjs(created_at).format('DD MMMM YYYY')}
+                        </p>
+                    </div>
+                </div>
+
+                {status === 'pending' && (
+                    <div className="flex justify-center items-center pl-6 ">
                         <Button
                             onClick={() => handleAcceptOrReject('accepted')}
-                            className="!bg-green-500">
+                            className="bg-green-500">
                             Accept
                         </Button>
                         <Button
                             onClick={() => handleAcceptOrReject('rejected')}
-                            className="!bg-red-500 ml-2">
+                            className="bg-red-500 ml-2">
                             Reject
                         </Button>
-                    </>
+                    </div>
                 )}
             </div>
         </div>

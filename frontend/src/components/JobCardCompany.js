@@ -83,53 +83,8 @@ export default function JobCardCompany({ job, setModal, setJobForm, mutate }) {
                         }}>
                         Edit
                     </Button>
-                    <Button
-                        className={`${
-                            is_active ? 'bg-gray-500' : 'bg-green-500'
-                        }`}
-                        onClick={handleJobStatus}>
-                        {is_active ? 'Deactivate' : 'Activate'}
-                    </Button>
                 </div>
             </div>
-        </div>
-    );
-
-    return (
-        <div
-            className={`max-w p-4 border border-gray-300 rounded-md mb-4 ${
-                !is_active && 'bg-gray-100'
-            }`}>
-            <h2 className="text-lg font-semibold mb-2">{title}</h2>
-            <p className="text-gray-600 mb-2 text-sm">{description}</p>
-            <p className="text-gray-600 mb-2 text-sm">Location: {location}</p>
-            <p className="text-gray-600 mb-2 text-sm">
-                Wage Rate: €{wage_rate}
-            </p>
-
-            <Button
-                className="!bg-blue-500"
-                onClick={() => {
-                    setModal({ open: true, view: 'edit' });
-                    setJobForm({
-                        title,
-                        description,
-                        location,
-                        date,
-                        wage_rate,
-                    });
-                }}>
-                Edit
-            </Button>
-            <Button
-                className={`${is_active ? 'bg-gray-500' : 'bg-green-500'}`}
-                onClick={handleJobStatus}>
-                {is_active ? 'Deactivate' : 'Activate'}
-            </Button>
-
-            <Button className="bg-red-500" onClick={handleDeleteJob}>
-                Delete
-            </Button>
         </div>
     );
 }
