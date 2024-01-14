@@ -1,8 +1,6 @@
-import Link from 'next/link';
+'use client';
 
-export const metadata = {
-    title: 'Laravel',
-};
+import Link from 'next/link';
 
 export default function Home() {
     return (
