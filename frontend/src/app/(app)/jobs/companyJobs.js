@@ -7,6 +7,7 @@ import Label from '@/components/Label';
 import axios from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
 import JobCardCompany from '@/components/JobCardCompany';
+import dayjs from 'dayjs';
 
 export default function CompanyJobs() {
     const { user } = useAuth({ middleware: 'auth' });
@@ -21,7 +22,7 @@ export default function CompanyJobs() {
         title: '',
         description: '',
         location: '',
-        date: '',
+        date: dayjs(Date.now()).format('YYYY-MM-DD'),
         wage_rate: '',
     });
 
@@ -105,7 +106,7 @@ export default function CompanyJobs() {
                     {/* Modal */}
                     {modal.open && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-                            <div className="relative bg-white rounded-lg shadow-md p-5 max-w-md mx-auto">
+                            <div className="relative bg-white rounded-lg shadow-md p-5 max-w-md mx-auto w-96">
                                 {/* Modal content */}
                                 <form
                                     onSubmit={handleSubmit}
@@ -128,14 +129,14 @@ export default function CompanyJobs() {
                                         <Label htmlFor="description">
                                             Description
                                         </Label>
-                                        <Input
-                                            type="text"
+                                        <textarea
+                                            rows={4}
                                             id="description"
                                             name="description"
                                             value={jobForm.description}
                                             onChange={handleInputChange}
                                             required
-                                        />
+                                            className={`rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full`}></textarea>
                                     </div>
 
                                     {/* Location */}
@@ -157,6 +158,9 @@ export default function CompanyJobs() {
                                     <div className="col-span-2">
                                         <Label htmlFor="date">Date</Label>
                                         <Input
+                                            min={dayjs(Date.now()).format(
+                                                'YYYY-MM-DD',
+                                            )}
                                             id="date"
                                             name="date"
                                             value={jobForm.date}

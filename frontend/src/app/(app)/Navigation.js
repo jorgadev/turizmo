@@ -52,15 +52,39 @@ const Navigation = ({ user }) => {
                     </div>
 
                     <div className="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
-                        <NavLink
+                        <Link
                             href="/profile"
-                            active={pathname === '/profile'}>
-                            Profile
-                        </NavLink>
+                            className={`inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out text-gray-500 hover:text-gray-700 hover:cursor-pointer`}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className={`w-5 h-5 ${
+                                    pathname === '/profile' && 'text-blue-500'
+                                }`}>
+                                <path
+                                    fillRule="evenodd"
+                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </Link>
                         <div
                             onClick={logout}
                             className={`inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out text-gray-500 hover:text-gray-700 hover:cursor-pointer`}>
-                            Logout
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-6 h-6">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18 18 6M6 6l12 12"
+                                />
+                            </svg>
                         </div>
                     </div>
 

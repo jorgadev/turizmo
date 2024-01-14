@@ -36,15 +36,15 @@ export default function WorkerJobs() {
         <div className="py-8 h-[calc(100vh-65px)]">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
                 <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6">
-                    Hey{' '}
+                    👋 Hey{' '}
                     <span className="font-semibold">
                         {userDetails?.worker.full_name}
-                    </span>{' '}
-                    you have{' '}
+                    </span>
+                    ! You have{' '}
                     <span className="font-semibold">
                         {userDetails?.worker.daily_application_limit}
                     </span>{' '}
-                    applications left for today!
+                    applications left for today. Keep it up!
                 </div>
                 <div className="bg-white overflow-auto shadow-sm sm:rounded-lg p-6 mt-1">
                     {data?.jobs?.length > 0 ? (
