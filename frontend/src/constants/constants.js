@@ -19,7 +19,7 @@ export const APPLICATION_TYPES = {
     },
     pending: {
         title: 'Pending',
-        color: 'bg-indigo-500',
+        color: 'bg-blue-500',
         svg: (
             <svg
                 fill="none"

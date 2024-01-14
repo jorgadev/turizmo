@@ -7,7 +7,7 @@ export default function JobCardWorker({ job, onApply }) {
 
     return (
         <div className="w-full mx-auto mb-12 flex items-center">
-            <div className="w-32 h-32 bg-indigo-500 mr-4"></div>
+            <div className="w-32 h-32 bg-blue-500 mr-4"></div>
             <div className="flex flex-row justify-between text-justify flex-1 h-32">
                 <div className="flex flex-col justify-between">
                     <div className="overflow-hidden">

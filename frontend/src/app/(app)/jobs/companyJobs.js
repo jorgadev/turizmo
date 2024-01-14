@@ -126,7 +126,7 @@ export default function CompanyJobs() {
                                     value={jobForm.description}
                                     onChange={handleInputChange}
                                     required
-                                    className={`rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full`}></textarea>
+                                    className={`rounded-md shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full`}></textarea>
                             </div>
 
                             <div className="col-span-2">

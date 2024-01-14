@@ -46,7 +46,7 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
                 </div>
 
                 {status === 'pending' ? (
-                    <div className="flex justify-center items-center pl-6 ">
+                    <div className="flex justify-center items-center pl-12 ">
                         <Button
                             onClick={() => handleAcceptOrReject('accepted')}
                             className="bg-green-500">
