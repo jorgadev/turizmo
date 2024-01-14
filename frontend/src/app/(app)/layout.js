@@ -15,7 +15,13 @@ const AppLayout = ({ children }) => {
         <div className="min-h-screen bg-gray-100">
             <Navigation user={user} />
 
-            <main>{children}</main>
+            <main>
+                <div className="py-8 h-[calc(100vh-65px)]">
+                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
+                        {children}
+                    </div>
+                </div>
+            </main>
         </div>
     );
 };
