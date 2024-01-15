@@ -37,7 +37,7 @@ export default function JobCardCompany({ job, setModal, setJobForm, mutate }) {
             <div className="w-20 h-20 bg-blue-500 mr-4 rounded-lg"></div>
 
             <div className="flex flex-row justify-between flex-1 h-20">
-                <div className="flex flex-col justify-between w-full">
+                <div className="flex flex-col justify-between w-9/12">
                     <h2 className="font-semibold">
                         {title} ({location})
                     </h2>

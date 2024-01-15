@@ -29,7 +29,7 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
             <div className={`w-20 h-20 ${color} mr-4 rounded-lg`}></div>
 
             <div className="flex flex-row justify-between flex-1 h-20">
-                <div className="flex flex-col justify-between w-full">
+                <div className="flex flex-col justify-between w-9/12">
                     <h2 className="font-semibold">
                         {full_name} <span className="font-normal"> → </span>
                         {title} ({location})
@@ -59,7 +59,7 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
                         </Button>
                     </div>
                 ) : status === 'accepted' ? (
-                    <div className="flex justify-center items-center text-sm pr-6">
+                    <div className="flex justify-center items-center text-sm pr-12">
                         <p>{contact_number}</p>
                     </div>
                 ) : (
