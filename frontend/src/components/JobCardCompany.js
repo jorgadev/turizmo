@@ -3,18 +3,11 @@ import Button from '@/components/Button';
 import axios from '@/lib/axios';
 import dayjs from 'dayjs';
 
-export default function JobCardCompany({ job, setModal, setJobForm, mutate }) {
-    const {
-        id,
-        title,
-        description,
-        location,
-        wage_rate,
-        date,
-        is_active,
-    } = job;
+export default function JobCardCompany({ job, mutate }) {
+    const { id, title, description, location, wage_rate, date } = job;
 
     const handleDeleteJob = async e => {
+        e.preventDefault();
         try {
             const response = await axios.delete(`/api/jobs/${id}`);
 

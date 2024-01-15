@@ -5,7 +5,6 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Label from '@/components/Label';
 import axios from '@/lib/axios';
-import LoadingSpinner from '@/components/LoadingSpinner';
 
 // Profile component
 export default function WorkerProfile({ data, mutate }) {

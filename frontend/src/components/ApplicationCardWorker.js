@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@/components/Button';
 import dayjs from 'dayjs';
 
 export default function ApplicationCardWorker({ application, color }) {

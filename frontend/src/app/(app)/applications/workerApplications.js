@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFetch } from '@/hooks/fetch';
-import ApplicationCardWorker from '@/components/ApplicationCardWorker';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ApplicationsBlock from '@/components/ApplicationsBlock';
 
