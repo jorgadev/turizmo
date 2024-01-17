@@ -2,9 +2,8 @@ import React from 'react';
 import Button from '@/components/Button';
 import dayjs from 'dayjs';
 
-export default function JobCardWorker({ job, onApply }) {
+export default function JobCard({ job, isCompany, onApply, onDelete }) {
     const { title, description, location, wage_rate, company, date } = job;
-    const { company_name } = company;
 
     return (
         <div className="w-full mx-auto mb-12 flex items-center">
@@ -13,11 +12,7 @@ export default function JobCardWorker({ job, onApply }) {
                 <div className="flex flex-col justify-between w-9/12">
                     <div>
                         <h2 className="font-semibold">
-                            {title} ({location}){' '}
-                            <span className="text-xs  text-gray-500 font-normal">
-                                {' '}
-                                - {company_name}
-                            </span>
+                            company_name → {title} ({location}){' '}
                         </h2>
                     </div>
 
@@ -33,7 +28,13 @@ export default function JobCardWorker({ job, onApply }) {
                 </div>
 
                 <div className="flex justify-center items-center pl-12 ">
-                    <Button onClick={onApply}>Apply</Button>
+                    {isCompany ? (
+                        <Button className="bg-red-500" onClick={onDelete}>
+                            Delete
+                        </Button>
+                    ) : (
+                        <Button onClick={onApply}>Apply</Button>
+                    )}
                 </div>
             </div>
         </div>

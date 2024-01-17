@@ -6,9 +6,9 @@ import Input from '@/components/Input';
 import Label from '@/components/Label';
 import axios from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
-import JobCardCompany from '@/components/JobCardCompany';
 import dayjs from 'dayjs';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import JobCard from '@/components/JobCard';
 
 export default function CompanyJobs() {
     const { user } = useAuth({ middleware: 'auth' });
@@ -62,17 +62,30 @@ export default function CompanyJobs() {
         }
     };
 
+    const handleDeleteJob = async id => {
+        try {
+            const response = await axios.delete(`/api/jobs/${id}`);
+
+            if (response.status === 200) {
+                mutate();
+            } else {
+                console.error('Error deleting job');
+            }
+        } catch (error) {
+            console.error('Error deleting job', error);
+        }
+    };
+
     return (
         <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-128px)]">
             {data?.jobs?.length > 0 ? (
                 <>
                     {data.jobs.map(job => (
-                        <JobCardCompany
+                        <JobCard
                             key={job.id}
                             job={job}
-                            mutate={mutate}
-                            setModal={setModal}
-                            setJobForm={setJobForm}
+                            isCompany={true}
+                            onDelete={() => handleDeleteJob(job.id)}
                         />
                     ))}
                     <div className="text-center mt-6">

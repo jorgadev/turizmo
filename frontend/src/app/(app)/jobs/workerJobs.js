@@ -4,8 +4,8 @@ import React from 'react';
 import { useFetch } from '@/hooks/fetch';
 import axios from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
-import JobCardWorker from '@/components/JobCardWorker';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import JobCard from '@/components/JobCard';
 
 export default function WorkerJobs() {
     const { user, userDetails, mutateUserDetails } = useAuth({
@@ -13,10 +13,10 @@ export default function WorkerJobs() {
     });
     const { data, error, mutate, isLoading } = useFetch('/api/worker/jobs');
 
-    const handleApply = async jobId => {
+    const handleApply = async id => {
         try {
             const response = await axios.post('/api/application', {
-                job_id: jobId,
+                job_id: id,
                 worker_id: user.id,
             });
 
@@ -48,10 +48,10 @@ export default function WorkerJobs() {
                 {data?.jobs?.length > 0 ? (
                     <>
                         {data.jobs.map(job => (
-                            <JobCardWorker
+                            <JobCard
                                 key={job.id}
                                 job={job}
-                                isCompany={user.is_company}
+                                isCompany={false}
                                 onApply={() => handleApply(job.id)}
                             />
                         ))}
