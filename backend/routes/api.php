@@ -38,6 +38,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/jobs/{id}', [CompanyController::class, 'deleteJob']);
     Route::put('/jobs/{id}', [CompanyController::class, 'updateJob']);
     Route::put('/application/{id}', [CompanyController::class, 'updateApplication']);
+
+    // Review routes
+
+    Route::get('/ratings/{id}', [RatingController::class, 'getRatings']);
+    Route::post('/ratings/{id}', [RatingController::class, 'createRating']);
+
 });
 
 
