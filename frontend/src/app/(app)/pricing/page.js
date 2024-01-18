@@ -5,7 +5,7 @@ export default function Pricing() {
         <div className="bg-white shadow-sm sm:rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-white p-6 h-[calc(100vh-128px)]">
             <section className="bg-white ">
                 <div className="mx-auto max-w-screen-md text-center mb-8">
-                    <h2 className="my-4 text-4xl tracking-tight ">
+                    <h2 className="my-4 text-3xl tracking-tight ">
                         Simplifying your workforce management
                     </h2>
                     <p className="mb-5 font-light text-gray-500 sm:text-xl ">

@@ -25,17 +25,21 @@ export default function ApplicationCardWorker({ application, color, mutate }) {
     };
 
     return (
-        <div className="w-full mx-auto mb-12 flex items-center">
-            <div className={`w-20 h-20 ${color} mr-4 rounded-lg`}></div>
+        <div className="w-full mx-auto mb-4 sm:mb-12 flex items-center">
+            <div
+                className={`hidden sm:block sm:w-20 sm:h-20 bg-${color} mr-4 rounded-lg`}></div>
 
-            <div className="flex flex-row justify-between flex-1 h-20">
+            <div
+                className={`border-l-4 border-${color} pl-2 sm:pl-0 sm:border-none flex flex-row justify-between flex-1 sm:h-20`}>
                 <div className="flex flex-col justify-between w-9/12">
-                    <h2 className="font-semibold">
-                        {full_name} <span className="font-normal"> → </span>
-                        {title} ({location})
+                    <h2 className="font-semibold text-sm sm:text-base">
+                        {full_name} → {title}{' '}
+                        <span className="text-xs  text-gray-500 font-normal">
+                            ({location})
+                        </span>
                     </h2>
 
-                    <div className="grid grid-cols-1">
+                    <div className="hidden sm:grid grid-cols-1">
                         <p className="text-xs">CV: {cv}</p>
                         <p className="text-xs">Hourly Wage: {hourly_wage}€</p>
                         <p className="text-xs">

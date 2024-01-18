@@ -1,7 +1,7 @@
 export const APPLICATION_TYPES = {
     accepted: {
         title: 'Accepted',
-        color: 'bg-green-500',
+        color: 'green-500',
         svg: (
             <svg
                 fill="none"
@@ -19,7 +19,7 @@ export const APPLICATION_TYPES = {
     },
     pending: {
         title: 'Pending',
-        color: 'bg-blue-500',
+        color: 'blue-500',
         svg: (
             <svg
                 fill="none"
@@ -37,7 +37,7 @@ export const APPLICATION_TYPES = {
     },
     rejected: {
         title: 'Rejected',
-        color: 'bg-red-500',
+        color: 'red-500',
         svg: (
             <svg
                 fill="none"
