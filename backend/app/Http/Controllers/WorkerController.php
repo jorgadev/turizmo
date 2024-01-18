@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Worker;
 use App\Models\Job;
 use App\Models\Application;
+use App\Models\Company;
 
 class WorkerController extends Controller
 {
@@ -65,13 +66,13 @@ class WorkerController extends Controller
     {
         $user = auth()->user();
         $worker = Worker::where('user_id', $user->id)->first();
-    
+
         if (!$worker) {
             return response()->json(['error' => 'Worker profile not found.'], 404);
         }
-    
-        $applications = $worker->applications()->with('job')->get();
-    
+
+        $applications = $worker->applications()->with('job.company')->get();
+
         return response()->json(['applications' => $applications]);
     }
 

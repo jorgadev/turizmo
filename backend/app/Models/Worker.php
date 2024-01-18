@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Job;
+use App\Models\Company;
+use App\Models\Application;
+
 
 
 class Worker extends Model
@@ -24,4 +27,9 @@ class Worker extends Model
     {
         return $this->hasMany(Application::class, 'worker_id', 'user_id');
     }
+
+    public function companies()
+{
+    return $this->hasManyThrough(Company::class, Application::class);
+}
 }
